@@ -25,7 +25,9 @@
             {% csrf_token %}
 
             {% for field in form %}
+            {% if field.label != "Author" %}
             <div class="">{{ field.label }}</div>
+            {% endif %}
             {{ field }}
 
             <div class="my-2"></div>
@@ -35,8 +37,10 @@
             {% endif %}
 
             <button type="submit"
-                class="text-lg bg-teal-400 hover:bg-teal-500 px-4 py-2 rounded-md w-full mt-3">Create</button>
+                class="text-lg bg-teal-400 hover:bg-teal-500 px-4 py-2 rounded-md w-full mt-3">Tambah</button>
         </form>
+        <a href="/" type="submit"
+            class="text-lg border border-black hover:bg-gray-300 px-4 py-2 rounded-md w-full mt-3 text-center">Batal</a>
     </div>
 </body>
 

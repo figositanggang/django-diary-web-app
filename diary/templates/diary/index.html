@@ -7,13 +7,26 @@ Diary
 {% block content %}
 <div class="mx-16 p-6 rounded-md min-h-screen bg-white mb-10">
     <div class="text-2xl font-extrabold">Diaries mu</div>
-    {% for diary in diaries %}
-    <div class="grid grid-cols-3 mt-5">
-        <a href="#" class="px-4 py-3 rounded-md shadow-lg bg-amber-300 hover:bg-amber-400 active:bg-amber-500">
-            <div class="font-bold text-2xl mb-2">{{ diary.title }}</div>
-            <div class="">{{ diary.diary }}</div>
+    <div class="grid grid-cols-3 mt-5 gap-x-3 gap-y-4">
+        {% for diary in diaries %}
+
+        <!-- @ Diary Card -->
+        <a href="{% url 'diary:detail' diary.id%}"
+            class="px-4 py-3 rounded-md shadow-lg bg-amber-300 hover:bg-amber-400 active:bg-amber-500 h-64 grid content-between line-clamp-1">
+            <div class="place-self-start self-start">
+                <div class="font-bold text-2xl mb-2">{{ diary.title }}</div>
+                <p class="line-clamp-6">{{ diary.diary }}</p>
+            </div>
+
+            <div class="p-0 m-0 flex justify-between">
+                <span class="opacity-60">{{ diary.created_at }}</span>
+                <span class="font-semibold">{{ diary.author }}</span>
+            </div>
         </a>
+        <!--  -->
+
+        {% endfor %}
     </div>
-    {% endfor %}
+</div>
 </div>
 {% endblock content %}

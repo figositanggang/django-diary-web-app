@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM Mono">
+    <style>
+        body {
+            font-family: 'DM Mono', serif;
+        }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Create Diary</title>
+</head>
+
+<body class="bg-indigo-200">
+    <div class="px-5 py-2 bg-white rounded-md mt-16 ml-16 mr-16 xl:mr-32 lg:mr-32 ">
+        <div class="text-lg font-semibold mb-5">Create Diary</div>
+
+        <form action="." method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="">{{ field.label }}</div>
+            {{ field }}
+
+            <div class="my-2"></div>
+            {% endfor %}
+            {% if form.errors %}
+            <div class="p-2">{{ form.errors }}</div>
+            {% endif %}
+
+            <button type="submit"
+                class="text-lg bg-teal-400 hover:bg-teal-500 px-4 py-2 rounded-md w-full mt-3">Create</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Signup</title>
+</head>
+
+<body class="bg-gray-200">
+    <div
+        class="mx-auto mt-20 p-10 rounded-md drop-shadow-2xl grid justify-items-center md:w-2/3 lg:w-1/2 sm:w-4/5 bg-white">
+        <div class="text-4xl font-bold mb-10">Signup</div>
+
+        <form action="." method="post" class="w-full">
+            {% csrf_token %}
+
+            {% for field in  form %}
+
+            <label>{{ field.label }}</label>
+            <div class="">{{ field }}</div>
+            {% if field.errors %}
+            <div class="bg-red-400 font-semibold px-3 py-2 rounded-md">{{ field.errors }}</div>
+            {% endif %}
+
+            {% endfor %}
+
+            <button type="submit"
+                class="bg-teal-400 hover:bg-teal-500 active:bg-teal-600 px-5 py-2 mt-3 w-full rounded-md">Sign
+                up</button>
+
+        </form>
+
+        <div class="my-1"></div>
+
+        <a href="/"
+            class=" hover:bg-gray-200 active:bg-gray-300 px-5 py-2 rounded-md text-center border border-black w-full">Batal</a>
+
+    </div>
+</body>
+
+</html>
+
+<!-- <div class="grid">
+    <label for="username">Username</label>
+    <input type="text" id="username" class="border border-black px-3 py-2 rounded-md" />
+</div>
+
+<div class="my-3"></div>
+
+<div class="grid">
+    <label for="password">Password</label>
+    <input type="password" id="password" class="border border-black px-3 py-2 rounded-md" />
+</div>
+
+<div class="my-3"></div>
+
+<button type="submit"
+    class="bg-teal-400 hover:bg-teal-500 active:bg-teal-600 px-5 py-2 w-full rounded-md">Sign up</button> -->

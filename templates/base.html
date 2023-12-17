@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM Mono">
+    <style>
+        body {
+            font-family: 'DM Mono', serif;
+        }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body class="bg-indigo-200 transition-all">
+    <div class="bg-black opacity-0 absolute w-full h-full pointer-events-none" id="backdrop" onclick="closePopup()">
+    </div>
+
+    <!-- @ navbar -->
+    <nav class="flex justify-between px-16 py-6">
+        <a href="/" class="text-2xl font-semibold">Diary</a>
+
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'diary:create' %}" class="text-lg hover:bg-gray-400 px-4 py-2 rounded-md">Tulis diary</a>
+        {% else %}
+        <div class="">
+            <a href="{% url 'user:login' %}" class="text-lg hover:bg-gray-400 px-4 py-2 rounded-md">Login</a>
+            <a href="{% url 'user:signup' %}"
+                class="text-lg bg-teal-400 hover:bg-teal-500 px-4 py-2 rounded-md">Signup</a>
+        </div>
+        {% endif %}
+
+    </nav>
+    <!--  -->
+
+    <div class="absolute px-4 py-3 bg-white left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 rounded-md opacity-0 pointer-events-none grid justify-items-center w-60"
+        id="pop-up">
+        <div class="text-lg">Yakin logout?</div>
+
+        <div class="my-4"></div>
+
+        <div class="grid justify-items-center">
+            <a href="{% url 'user:logout' %}"
+                class="text-lg bg-red-400 hover:bg-red-500 active:bg-red-600 px-10 py-2 rounded-md w-full text-center">Ya</a>
+
+            <div class="my-1"></div>
+
+            <button
+                class="text-lg  hover:bg-gray-300 active:bg-gray-400 px-10 py-2 rounded-md w-full text-center border border-gray-500"
+                onclick="closePopup()">Batal</button>
+        </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock content %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+
+<!-- @ logout button -->
+<!-- <button class="text-lg bg-red-400 hover:bg-red-500 active:bg-red-600 px-4 py-2 rounded-md"
+            onclick="openPopup()">Logout</button> -->
